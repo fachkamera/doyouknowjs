@@ -61,9 +61,6 @@ export default function Radio({
           'bg-red-700/95 text-white': selectedOption === option && !isCorrect,
           'text-white before:absolute before:inset-0 before:z-[-1] before:animate-flash before:bg-lime-700 dark:before:bg-lime-800/95':
             indicateCorrect,
-
-          'animate-gradient bg-gradient bg-[length:400%_400%] text-black ':
-            selectedOption === option && false,
           'text-neutral-900 hover:bg-white/70 hover:text-black dark:text-white dark:hover:bg-black/70 dark:hover:text-white ':
             !selectedOption,
         },
