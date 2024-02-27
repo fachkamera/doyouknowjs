@@ -23,7 +23,7 @@ export default function RadioGroup({
 
   return (
     <div>
-      <ul className="mb-1 grid grid-cols-2 gap-1" role="radiogroup">
+      <ul className="mb-1 grid grid-cols-2 gap-1">
         {shuffledOptions.map((option, i) => (
           <li key={i} className="flex">
             <Radio
