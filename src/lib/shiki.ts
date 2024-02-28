@@ -1,6 +1,6 @@
-import { getHighlighter } from 'shikiji'
+import { getHighlighter } from 'shiki'
 
-export default async function shikiji(code: string, lang: 'html' | 'javascript' = 'javascript') {
+export default async function shiki(code: string, lang: 'html' | 'javascript' = 'javascript') {
   const highlighter = await getHighlighter({
     themes: ['material-theme-darker', 'min-light'],
     langs: ['javascript', 'html'],

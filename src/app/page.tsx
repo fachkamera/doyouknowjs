@@ -1,6 +1,6 @@
 import Header from '@/components/Header'
 import Exercises from '@/components/Exercises'
-import shikiji from '@/lib/shikiji'
+import shiki from '@/lib/shiki'
 import { sanityClient } from '@/utils/sanityClient'
 import { query, schema } from '@/lib/questions'
 import { unstable_cache } from 'next/cache'
@@ -58,12 +58,10 @@ export default async function Home() {
     async () =>
       Promise.all(
         questions.map(async (question) => {
-          return shikiji(question.code.code, question.code.language || 'javascript')
+          return shiki(question.code.code, question.code.language || 'javascript')
         }),
       ),
-    questions.map((question) =>
-      question._rev.concat('test2').concat(new Date().toISOString().slice(0, 15)),
-    ),
+    questions.map((question) => question._rev),
   )
   const highlighted = await getHighlighted()
   const questionsWithHighlightedCode = questions.map((question, i) => {
