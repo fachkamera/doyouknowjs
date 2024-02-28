@@ -48,7 +48,7 @@ export default async function Home() {
       {},
       {
         next: {
-          revalidate: 1,
+          revalidate: 86400,
         },
       },
     ),
