@@ -84,6 +84,7 @@ dark.addEventListener('change', ({ matches }) => {
             </time>{' '}
             <Link
               className="rounded p-0.5 pb-0 outline-none focus-visible:ring-2 focus-visible:ring-current"
+              target="_blank"
               href="https://mayermarkus.net"
             >
               Markus Mayer
