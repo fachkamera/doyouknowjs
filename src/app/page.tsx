@@ -11,22 +11,22 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Do You Know JS?',
   description: 'Test and strenghten your Javascript skills with Do You Know JS?',
-  icons: [
-    {
-      url: '/favicon.ico',
-      sizes: '32x32',
-      media: '(prefers-color-scheme: light)',
-    },
-    {
-      url: '/favicon-inverted.ico',
-      sizes: '32x32',
-      media: '(prefers-color-scheme: dark)',
-    },
-    {
-      url: '/favicon.svg',
-      type: 'image/svg+xml',
-    },
-  ],
+  // icons: [
+  //   {
+  //     url: '/favicon.ico',
+  //     sizes: '32x32',
+  //     media: '(prefers-color-scheme: light)',
+  //   },
+  //   {
+  //     url: '/favicon-inverted.ico',
+  //     sizes: '32x32',
+  //     media: '(prefers-color-scheme: dark)',
+  //   },
+  //   {
+  //     url: '/favicon.svg',
+  //     type: 'image/svg+xml',
+  //   },
+  // ],
   robots: 'index, follow, noarchive',
 }
 

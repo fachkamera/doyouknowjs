@@ -10,13 +10,6 @@ const sourceCodePro = Source_Code_Pro({
   display: 'block',
 })
 
-function minimizeCode(code: string) {
-  return code
-    .replace(/\/\/.*|\/\*[\s\S]*?\*\//g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
 const portraitWidths = [1280, 1488, 1792, 2048, 2560, 2880, 3323]
 const landscapeWidths = [1280, 1488, 1792, 2048, 2560, 2880, 3323, 3584, 5120, 6646]
 
@@ -25,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <Script id="dynamic-favicon" strategy="beforeInteractive">
-          {minimizeCode(`(function(){
+          {`(function(){
 const dark = window.matchMedia('(prefers-color-scheme: dark)')
 const { matches: isDark } = dark
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
@@ -38,13 +31,13 @@ if (isSafari) {
   link.href = isDark ? 'favicon.svg?dark' : 'favicon.svg'
 }
 document.head.appendChild(link);
-if (isSafari) return
+if (isSafari) return;
 
 const iconEl = document.querySelector('link[rel="icon"]')
 dark.addEventListener('change', ({ matches }) => {
   iconEl.setAttribute('href', matches ? '/favicon.svg?dark' : 'favicon.svg')
 })
-})()`)}
+})()`}
         </Script>
       </head>
       <body
