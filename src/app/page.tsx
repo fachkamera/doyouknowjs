@@ -5,7 +5,7 @@ import { query, schema } from '@/lib/questions'
 import type { Metadata, Viewport } from 'next'
 import kv from '@/lib/kv'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
@@ -42,17 +42,11 @@ export const viewport: Viewport = {
 }
 
 export default async function Home() {
-  const questions = schema.parse(
-    await sanityClient.fetch(
-      query,
-      {},
-      {
-        next: {
-          revalidate: 86400,
-        },
-      },
-    ),
-  )
+  const sanityQuestionData = await kv('sanityQuestionData', async () => {
+    const res = await sanityClient.fetch(query)
+    return res
+  })
+  const questions = schema.parse(sanityQuestionData)
 
   const highlighted = await Promise.all(
     questions.map(async (question) => {
