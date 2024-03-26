@@ -43,8 +43,7 @@ export const viewport: Viewport = {
 
 export default async function Home() {
   const sanityQuestionData = await kv('sanityQuestionData', async () => {
-    const res = await sanityClient.fetch(query)
-    return res
+    return await sanityClient.fetch(query)
   })
   const questions = schema.parse(sanityQuestionData)
 
