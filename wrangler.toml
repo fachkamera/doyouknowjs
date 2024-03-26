@@ -1,0 +1,7 @@
+name = "doyouknowjs"
+
+compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "CF_KV_DATA_CACHE"
+id = "29c987d17565449a996a6602a3930b29"

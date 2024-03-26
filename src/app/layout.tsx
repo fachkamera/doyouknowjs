@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { Source_Code_Pro } from 'next/font/google'
 import Script from 'next/script'
 
+export const runtime = 'edge'
+
 const sourceCodePro = Source_Code_Pro({
   subsets: ['latin'],
   weight: ['400'],

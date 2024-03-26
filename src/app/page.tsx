@@ -1,11 +1,11 @@
 import Header from '@/components/Header'
 import Exercises from '@/components/Exercises'
-import shiki from '@/lib/shiki'
 import { sanityClient } from '@/utils/sanityClient'
 import { query, schema } from '@/lib/questions'
-import { unstable_cache } from 'next/cache'
 import type { Metadata, Viewport } from 'next'
+import kv from '@/lib/kv'
 
+export const runtime = 'edge';
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
@@ -54,16 +54,26 @@ export default async function Home() {
     ),
   )
 
-  const getHighlighted = unstable_cache(
-    async () =>
-      Promise.all(
-        questions.map(async (question) => {
-          return shiki(question.code.code, question.code.language || 'javascript')
-        }),
-      ),
-    questions.map((question) => question._rev),
+  const highlighted = await Promise.all(
+    questions.map(async (question) => {
+      const { code } = question.code
+      const language = question.code.language || 'javascript'
+      const html = await kv(`${question._id}_${question._rev}`, async () => {
+        return await (
+          await fetch(
+            `https://slshiki.vercel.app/api/shiki?language=${language}&code=${encodeURIComponent(code)}`,
+            {
+              headers: {
+                authorization: `Bearer ${process.env.NEXT_SHIKI_TOKEN}`,
+              },
+            },
+          )
+        ).text()
+      })
+      return html
+    }),
   )
-  const highlighted = await getHighlighted()
+
   const questionsWithHighlightedCode = questions.map((question, i) => {
     return {
       ...question,
