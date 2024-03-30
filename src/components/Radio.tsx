@@ -2,7 +2,7 @@
 
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
-import useSounds from '@/hooks/useSounds'
+import useSfx from '@/hooks/useSfx'
 import { useAppState } from '@/lib/state'
 import type { QuestionWithHighlightedCode } from '@/lib/questions'
 
@@ -29,7 +29,7 @@ export default function Radio({
   indicateCorrect,
   isActive,
 }: Props) {
-  const { playSuccess, playFail } = useSounds()
+  const { playSuccess, playFail } = useSfx()
 
   const answers = useAppState((state) => state.answers)
   const addAnswer = useAppState((state) => state.addAnswer)

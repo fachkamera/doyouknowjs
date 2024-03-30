@@ -7,11 +7,10 @@ import { useKeyDown } from '@/hooks/useKeyDown'
 import clsx from 'clsx'
 import { shuffleArray } from '@/lib/helpers'
 import { useAppState } from '@/lib/state'
-import useSounds from '@/hooks/useSounds'
+import useSfx from '@/hooks/useSfx'
 
 export default function Exercises({ questions }: { questions: QuestionWithHighlightedCode[] }) {
-  const { playWhoosh } = useSounds()
-
+  const { playWhoosh } = useSfx()
   const activeIndex = useAppState((state) => state.activeIndex)
   const answers = useAppState((state) => state.answers)
   const setActiveIndex = useAppState((state) => state.setActiveIndex)
@@ -37,46 +36,43 @@ export default function Exercises({ questions }: { questions: QuestionWithHighli
   }
   useKeyDown('ArrowRight', next)
   useKeyDown('ArrowLeft', prev)
-  useKeyDown('a', () => {
-    if (answers[activeIndex]) return
-
-    console.log('no')
-  })
 
   return (
-    <div className="-translate-x-1/4 em64:translate-x-0">
-      <ul
-        className="flex transition-transform duration-1000"
-        style={{
-          transform: `translateX(calc(25% + var(--transform-boost) * ${
-            (-100 * activeIndex) / 2
-          }%))`,
-        }}
-      >
-        {shuffledQuestions.map((question, index) => (
-          <li key={question._id} className="flex w-full shrink-0 justify-center em64:w-1/2">
-            <div
-              className={clsx(
-                'w-full max-w-2xl font-mono transition-[transform,_opacity] duration-1000',
-                {
-                  ' scale-[.7] opacity-50': index !== activeIndex,
-                  '': index === activeIndex,
-                },
-              )}
-            >
-              <Exercise
-                next={next}
-                prev={prev}
-                index={index}
-                isLast={index === shuffledQuestions.length - 1}
-                question={question}
-                activeIndex={activeIndex}
-                setActiveIndex={setActiveIndex}
-              />
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="-translate-x-1/4 em64:translate-x-0">
+        <ul
+          className="flex transition-transform duration-1000"
+          style={{
+            transform: `translateX(calc(25% + var(--transform-boost) * ${
+              (-100 * activeIndex) / 2
+            }%))`,
+          }}
+        >
+          {shuffledQuestions.map((question, index) => (
+            <li key={question._id} className="flex w-full shrink-0 justify-center em64:w-1/2">
+              <div
+                className={clsx(
+                  'w-full max-w-2xl font-mono transition-[transform,_opacity] duration-1000',
+                  {
+                    ' scale-[.7] opacity-50': index !== activeIndex,
+                    '': index === activeIndex,
+                  },
+                )}
+              >
+                <Exercise
+                  next={next}
+                  prev={prev}
+                  index={index}
+                  isLast={index === shuffledQuestions.length - 1}
+                  question={question}
+                  activeIndex={activeIndex}
+                  setActiveIndex={setActiveIndex}
+                />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   )
 }
