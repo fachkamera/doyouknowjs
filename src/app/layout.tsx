@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import Link from 'next/link'
+import type { Metadata, Viewport } from 'next'
 import { Source_Code_Pro } from 'next/font/google'
 import Script from 'next/script'
 import bgL1280avif from '../assets/bg/bg-l-1280.avif'
@@ -36,6 +37,23 @@ import bgP2048webp from '../assets/bg/bg-p-2048.webp'
 import bgP2560webp from '../assets/bg/bg-p-2560.webp'
 import bgP2880webp from '../assets/bg/bg-p-2880.webp'
 import bgP3323webp from '../assets/bg/bg-p-3323.webp'
+
+export const metadata: Metadata = {
+  title: 'Do You Know JS?',
+  description: 'Test and strenghten your Javascript skills with Do You Know JS?',
+  robots: 'index, follow, noarchive',
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'rgb(238, 241, 247)' },
+    { media: '(prefers-color-scheme: dark)', color: 'rgb(10, 13, 21)' },
+  ],
+  width: 'device-width',
+  initialScale: 1,
+  minimumScale: 1,
+  maximumScale: 5,
+}
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ['latin'],
@@ -148,7 +166,7 @@ dark.addEventListener('change', ({ matches }) => {
         <footer className="fixed inset-x-0 bottom-0 flex justify-center pb-3 font-mono text-xs">
           <p>
             (c){' '}
-            <time className=" pl-0.5" dateTime="2024">
+            <time className="pl-0.5" dateTime="2024">
               2024
             </time>{' '}
             <Link

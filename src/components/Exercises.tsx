@@ -2,10 +2,8 @@
 
 import Exercise from '@/components/Exercise'
 import type { QuestionWithHighlightedCode } from '@/lib/questions'
-import { useEffect, useState } from 'react'
 import { useKeyDown } from '@/hooks/useKeyDown'
 import clsx from 'clsx'
-import { shuffleArray } from '@/lib/helpers'
 import { useAppState } from '@/lib/state'
 import useSfx from '@/hooks/useSfx'
 
@@ -16,16 +14,9 @@ export default function Exercises({ questions }: { questions: QuestionWithHighli
   const setActiveIndex = useAppState((state) => state.setActiveIndex)
   const addAnswer = useAppState((state) => state.addAnswer)
   const addPoints = useAppState((state) => state.addPoints)
-  const [shuffledQuestions, setShuffledQuestions] = useState<QuestionWithHighlightedCode[]>([])
-
-  useEffect(() => {
-    if (shuffledQuestions.length) return
-    const shuffledItems = shuffleArray(questions)
-    setShuffledQuestions(shuffledItems)
-  }, [questions, shuffledQuestions.length])
 
   const next = () => {
-    if (activeIndex === shuffledQuestions.length - 1 || answers.length < activeIndex + 1) return
+    if (activeIndex === questions.length - 1 || answers.length < activeIndex + 1) return
     playWhoosh()
     setActiveIndex(activeIndex + 1)
   }
@@ -48,7 +39,7 @@ export default function Exercises({ questions }: { questions: QuestionWithHighli
             }%))`,
           }}
         >
-          {shuffledQuestions.map((question, index) => (
+          {questions.map((question, index) => (
             <li key={question._id} className="flex w-full shrink-0 justify-center em64:w-1/2">
               <div
                 className={clsx(
@@ -63,7 +54,7 @@ export default function Exercises({ questions }: { questions: QuestionWithHighli
                   next={next}
                   prev={prev}
                   index={index}
-                  isLast={index === shuffledQuestions.length - 1}
+                  isLast={index === questions.length - 1}
                   question={question}
                   activeIndex={activeIndex}
                   setActiveIndex={setActiveIndex}
