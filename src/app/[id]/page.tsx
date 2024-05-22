@@ -1,6 +1,5 @@
 import Header from '@/components/Header'
 import Exercises from '@/components/Exercises'
-import shiki from '@/lib/shiki'
 import { sanityClient } from '@/utils/sanityClient'
 import { query, schema } from '@/lib/questions'
 import { shuffleArray } from '@/lib/helpers'
@@ -25,7 +24,18 @@ export default async function Home({ params }: { params: { id: string } }) {
   const getHighlighted = async () =>
     Promise.all(
       questions.map(async (question) => {
-        return shiki(question.code.code, question.code.language || 'javascript')
+        try {
+          const res = await fetch(
+            `https://slshiki.vercel.app/api/shiki?language=${question.code.language || 'javascript'}&code=${encodeURIComponent(question.code.code)}`,
+            {
+              headers: {
+                authorization: `Bearer ${process.env.NEXT_SHIKI_TOKEN}`,
+              },
+            })
+          return await res.text()
+         } catch (e) {
+          console.error(e)
+         }
       }),
     )
 
