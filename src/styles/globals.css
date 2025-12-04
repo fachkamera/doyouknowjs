@@ -1,6 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-canvas-dark: rgba(10, 13, 21);
+  --color-canvas-light: rgba(238, 241, 247);
+
+  --color-eerieblack: rgba(34, 30, 27);
+  --color-gray-vsdark: rgb(30, 30, 30);
+
+  --breakpoint-em32: 32rem;
+  --breakpoint-em42: 42rem;
+  --breakpoint-em64: 64rem;
+
+  --animate-flash: flash 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes flash {
+    50% {
+      opacity: 0.7;
+    }
+  }
+}
+@theme inline {
+  --font-mono: var(--font-sourcecodepro);
+}
 
 @media (prefers-color-scheme: dark) {
   .shiki,

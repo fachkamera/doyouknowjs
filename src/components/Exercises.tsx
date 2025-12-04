@@ -30,7 +30,7 @@ export default function Exercises({ questions }: { questions: QuestionWithHighli
 
   return (
     <>
-      <div className="-translate-x-1/4 em64:translate-x-0">
+      <div className="em64:translate-x-0 -translate-x-1/4">
         <ul
           className="flex transition-transform duration-1000"
           style={{
@@ -40,10 +40,10 @@ export default function Exercises({ questions }: { questions: QuestionWithHighli
           }}
         >
           {questions.map((question, index) => (
-            <li key={question._id} className="flex w-full shrink-0 justify-center em64:w-1/2">
+            <li key={question._id} className="em64:w-1/2 flex w-full shrink-0 justify-center">
               <div
                 className={clsx(
-                  'w-full max-w-2xl font-mono transition-[transform,_opacity] duration-1000',
+                  'w-full max-w-2xl font-mono transition-[scale,opacity] duration-1000',
                   {
                     ' scale-[.7] opacity-50': index !== activeIndex,
                     '': index === activeIndex,
