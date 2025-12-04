@@ -13,11 +13,11 @@ export default function Header({ questions }: { questions: QuestionWithHighlight
     <header className="pointer-events-none absolute inset-x-0 top-0">
       <div>
         <div className="flex items-center justify-end p-2">
-          <div className="after:bgcurrent relative flex -translate-x-2 translate-y-2 flex-col after:absolute after:inset-x-0 after:-bottom-0 after:h-0.5 after:w-full after:origin-right after:scale-x-[0.7] after:rounded-full em32:after:-bottom-2 em32:after:scale-x-[0.8] em64:after:h-1 em64:after:scale-x-100">
+          <div className="after:bgcurrent em32:after:-bottom-2 em32:after:scale-x-[0.8] em64:after:h-1 em64:after:scale-x-100 relative flex -translate-x-2 translate-y-2 flex-col after:absolute after:inset-x-0 after:-bottom-0 after:h-0.5 after:w-full after:origin-right after:scale-x-[0.7] after:rounded-full">
             <Logo />
             <div
               className={clsx(
-                'relative flex h-[3px] w-full origin-right scale-x-[0.7] gap-1 overflow-hidden rounded-full fill-current em32:mt-1 em32:scale-x-[0.8] em64:mt-2 em64:h-1 em64:scale-x-100',
+                'em32:mt-1 em32:scale-x-[0.8] em64:mt-2 em64:h-1 em64:scale-x-100 relative flex h-[3px] w-full origin-right scale-x-[0.7] gap-1 overflow-hidden rounded-full fill-current',
                 {
                   '': !points.length,
                 },
@@ -25,7 +25,7 @@ export default function Header({ questions }: { questions: QuestionWithHighlight
             >
               <div
                 className={clsx(
-                  'absolute inset-0 bg-black transition-[transform,_opacity] dark:bg-white',
+                  'absolute inset-0 bg-black transition-[translate,opacity] dark:bg-white',
                   {
                     '-translate-x-full opacity-0': points.length,
                   },

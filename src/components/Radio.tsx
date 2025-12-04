@@ -55,11 +55,11 @@ export default function Radio({
         {
           'text-stone-600': !!selectedOption && !isCorrect && selectedOption !== option,
           'cursor-pointer dark:text-white': !selectedOption,
-          'bg-white/95 dark:bg-eerieblack/98': selectedOption !== option && !indicateCorrect,
+          'dark:bg-eerieblack/98 bg-white/95': selectedOption !== option && !indicateCorrect,
           'bg-lime-700 text-lime-100 dark:bg-lime-900 dark:text-white':
             selectedOption === option && isCorrect,
           'bg-red-700/95 text-white': selectedOption === option && !isCorrect,
-          'text-white before:absolute before:inset-0 before:z-[-1] before:animate-flash before:bg-lime-700 dark:before:bg-lime-800/95':
+          'before:animate-flash text-white before:absolute before:inset-0 before:z-[-1] before:bg-lime-700 dark:before:bg-lime-800/95':
             indicateCorrect,
           'text-neutral-900 hover:bg-white/70 hover:text-black dark:text-white dark:hover:bg-black/70 dark:hover:text-white ':
             !selectedOption,
@@ -73,7 +73,7 @@ export default function Radio({
     >
       <span
         className={clsx(
-          'mr-0.5 flex h-6 w-6 shrink-0 select-none items-center justify-center rounded-full border text-sm em32:mr-1',
+          'em32:mr-1 mr-0.5 flex h-6 w-6 shrink-0 select-none items-center justify-center rounded-full border text-sm',
           {
             'group-hover:bg-white dark:group-hover:bg-inherit': !selectedOption,
             'border-black bg-black': selectedOption === option && !isCorrect,

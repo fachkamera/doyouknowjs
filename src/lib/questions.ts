@@ -1,20 +1,21 @@
-import { q, z } from 'groqd'
+import { z, type InferFragmentType } from 'groqd'
+import { q } from './groqdClient'
 
-export const { query, schema } = q('*')
-  .filter("_type == 'question'")
-  .grab$({
-    code: q('code').grab$({
-      code: q.string(),
-      language: q.union([q.literal('javascript'), q.literal('html')]).optional(),
-    }),
-    correctAnswer: q.string(),
-    link: q.string(),
-    otherAnswers: q.array(q.string()),
-    _id: q.string(),
-    level: q.union([q.literal('rookie'), q.literal('advanced'), q.literal('pro')]),
-    _rev: q.string(),
-  })
+const question = q.fragmentForType<'question'>().project((question) => ({
+  code: question.field('code').project({
+    code: z.string().nullable(),
+    language: q.raw('language', z.union([z.literal('javascript'), z.literal('html')]).nullable()),
+  }),
+  correctAnswer: q.string(),
+  link: z.string(),
+  otherAnswers: z.array(z.string()),
+  _id: z.string(),
+  level: z.union([z.literal('rookie'), z.literal('advanced'), z.literal('pro')]),
+  _rev: z.string(),
+}))
 
-type ArrayElementType<T extends any[]> = T extends (infer U)[] ? U : never
-export type Question = ArrayElementType<z.infer<typeof schema>>
+export const questionsQuery = q.star.filterByType('question').project(question)
+
+// type ArrayElementType<T extends any[]> = T extends (infer U)[] ? U : never
+export type Question = InferFragmentType<typeof question>
 export type QuestionWithHighlightedCode = Question & { highlightedCode: string }

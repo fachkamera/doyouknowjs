@@ -135,7 +135,7 @@ dark.addEventListener('change', ({ matches }) => {
         </Script>
       </head>
       <body
-        className={`${sourceCodePro.variable} overflow-hidden bg-canvas-light text-black dark:bg-canvas-dark dark:text-white`}
+        className={`${sourceCodePro.variable} bg-canvas-light dark:bg-canvas-dark overflow-hidden text-black dark:text-white`}
       >
         <picture>
           <source
