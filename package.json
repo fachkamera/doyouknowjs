@@ -2,6 +2,7 @@
   "name": "doyouknowjs",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@11.8.0",
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
@@ -10,32 +11,32 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
-    "@sanity/client": "^7.13.1",
-    "@types/node": "24.10.1",
-    "@types/react": "19.2.7",
+    "@sanity/client": "^7.23.0",
+    "@types/node": "26.0.0",
+    "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "clsx": "^2.1.1",
-    "eslint": "9.39.1",
-    "eslint-config-next": "16.0.7",
+    "eslint": "10.5.0",
+    "eslint-config-next": "16.2.9",
     "groqd": "^1.7.1",
     "howler": "^2.2.4",
-    "next": "16.0.7",
-    "next-sanity": "^11.6.10",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
-    "typescript": "5.9.3",
+    "next": "16.2.9",
+    "next-sanity": "^13.1.1",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "typescript": "6.0.3",
     "usehooks-ts": "^3.1.1",
-    "zustand": "^5.0.9"
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.3",
-    "@tailwindcss/postcss": "^4.1.17",
-    "@types/howler": "^2.2.12",
+    "@eslint/eslintrc": "^3.3.5",
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/howler": "^2.2.13",
     "eslint-config-prettier": "^10.1.8",
-    "postcss": "^8.5.6",
-    "prettier": "^3.7.4",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "tailwindcss": "^4.1.17"
+    "postcss": "^8.5.15",
+    "prettier": "^3.8.4",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "tailwindcss": "^4.3.1"
   },
   "prettier": {
     "semi": false,
@@ -44,11 +45,5 @@
     "plugins": [
       "prettier-plugin-tailwindcss"
     ]
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.2.7",
-      "@types/react-dom": "19.2.3"
-    }
   }
 }
