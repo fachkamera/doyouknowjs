@@ -2,12 +2,19 @@
   "name": "doyouknowjs",
   "version": "0.1.0",
   "private": true,
+  "description": "A quiz that tests how well you know JavaScript's quirks and gotchas.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fachkamera/doyouknowjs.git"
+  },
   "packageManager": "pnpm@11.8.0",
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -19,19 +26,16 @@
     "eslint": "10.5.0",
     "eslint-config-next": "16.2.9",
     "groqd": "^1.7.1",
-    "howler": "^2.2.4",
     "next": "16.2.9",
     "next-sanity": "^13.1.1",
     "react": "19.2.7",
     "react-dom": "19.2.7",
-    "typescript": "6.0.3",
-    "usehooks-ts": "^3.1.1",
-    "zustand": "^5.0.14"
+    "typescript": "6.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
+    "@next/eslint-plugin-next": "^16.2.9",
     "@tailwindcss/postcss": "^4.3.1",
-    "@types/howler": "^2.2.13",
     "eslint-config-prettier": "^10.1.8",
     "postcss": "^8.5.15",
     "prettier": "^3.8.4",

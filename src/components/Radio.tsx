@@ -31,9 +31,7 @@ export default function Radio({
 }: Props) {
   const { playSuccess, playFail } = useSfx()
 
-  const answers = useAppState((state) => state.answers)
-  const addAnswer = useAppState((state) => state.addAnswer)
-  const addPoints = useAppState((state) => state.addPoints)
+  const { answerQuestion } = useAppState()
 
   const pointsMap = {
     rookie: 1,
@@ -43,15 +41,14 @@ export default function Radio({
 
   const handleClick = () => {
     isCorrect ? playSuccess() : playFail()
-    addAnswer(option)
-    addPoints(isCorrect ? pointsMap[question.level] : 0)
+    answerQuestion(question._id, option, isCorrect ? pointsMap[question.level] : 0)
     setSelectedOption(option)
   }
 
   return (
     <button
       className={clsx(
-        'group relative flex w-full select-none items-center gap-2 px-3 py-3 font-mono outline-none transition-all focus-visible:ring-4 focus-visible:ring-current',
+        'group relative flex w-full items-center gap-2 px-3 py-3 font-mono transition-all outline-none select-none focus-visible:ring-4 focus-visible:ring-current',
         {
           'text-stone-600': !!selectedOption && !isCorrect && selectedOption !== option,
           'cursor-pointer dark:text-white': !selectedOption,
@@ -61,7 +58,7 @@ export default function Radio({
           'bg-red-700/95 text-white': selectedOption === option && !isCorrect,
           'before:animate-flash text-white before:absolute before:inset-0 before:z-[-1] before:bg-lime-700 dark:before:bg-lime-800/95':
             indicateCorrect,
-          'text-neutral-900 hover:bg-white/70 hover:text-black dark:text-white dark:hover:bg-black/70 dark:hover:text-white ':
+          'text-neutral-900 hover:bg-white/70 hover:text-black dark:text-white dark:hover:bg-black/70 dark:hover:text-white':
             !selectedOption,
         },
       )}
@@ -73,7 +70,7 @@ export default function Radio({
     >
       <span
         className={clsx(
-          'em32:mr-1 mr-0.5 flex h-6 w-6 shrink-0 select-none items-center justify-center rounded-full border text-sm',
+          'em32:mr-1 mr-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-sm select-none',
           {
             'group-hover:bg-white dark:group-hover:bg-inherit': !selectedOption,
             'border-black bg-black': selectedOption === option && !isCorrect,

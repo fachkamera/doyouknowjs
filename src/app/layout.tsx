@@ -158,7 +158,8 @@ dark.addEventListener('change', ({ matches }) => {
           />
           <img
             className="fixed inset-0 z-[-1] h-full w-full object-cover object-[85%_50%] invert dark:brightness-75 dark:invert-0 dark:saturate-[0.3]"
-            alt="satellite image of North America at night"
+            alt=""
+            aria-hidden="true"
           />
         </picture>
         <div className="fixed z-[-1] h-full w-full bg-blue-100 opacity-30 dark:bg-blue-950 dark:opacity-20"></div>

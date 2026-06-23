@@ -3,28 +3,12 @@
 import Exercise from '@/components/Exercise'
 import type { QuestionWithHighlightedCode } from '@/lib/questions'
 import { useKeyDown } from '@/hooks/useKeyDown'
+import { useQuizNavigation } from '@/hooks/useQuizNavigation'
 import clsx from 'clsx'
-import { useAppState } from '@/lib/state'
-import useSfx from '@/hooks/useSfx'
 
 export default function Exercises({ questions }: { questions: QuestionWithHighlightedCode[] }) {
-  const { playWhoosh } = useSfx()
-  const activeIndex = useAppState((state) => state.activeIndex)
-  const answers = useAppState((state) => state.answers)
-  const setActiveIndex = useAppState((state) => state.setActiveIndex)
-  const addAnswer = useAppState((state) => state.addAnswer)
-  const addPoints = useAppState((state) => state.addPoints)
+  const { activeIndex, next, prev } = useQuizNavigation(questions.length)
 
-  const next = () => {
-    if (activeIndex === questions.length - 1 || answers.length < activeIndex + 1) return
-    playWhoosh()
-    setActiveIndex(activeIndex + 1)
-  }
-  const prev = () => {
-    if (activeIndex === 0) return
-    playWhoosh()
-    setActiveIndex(activeIndex - 1)
-  }
   useKeyDown('ArrowRight', next)
   useKeyDown('ArrowLeft', prev)
 
@@ -45,19 +29,16 @@ export default function Exercises({ questions }: { questions: QuestionWithHighli
                 className={clsx(
                   'w-full max-w-2xl font-mono transition-[scale,opacity] duration-1000',
                   {
-                    ' scale-[.7] opacity-50': index !== activeIndex,
+                    'scale-[.7] opacity-50': index !== activeIndex,
                     '': index === activeIndex,
                   },
                 )}
               >
                 <Exercise
-                  next={next}
-                  prev={prev}
                   index={index}
                   isLast={index === questions.length - 1}
                   question={question}
-                  activeIndex={activeIndex}
-                  setActiveIndex={setActiveIndex}
+                  totalQuestions={questions.length}
                 />
               </div>
             </li>

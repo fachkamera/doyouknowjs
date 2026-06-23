@@ -4,7 +4,7 @@ import RadioGroup from './RadioGroup'
 import CodeBlock from '@/components/CodeBlock'
 import { ArrowTopRightOnSquareIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
 import type { QuestionWithHighlightedCode } from '@/lib/questions'
-import { useAppState } from '@/lib/state'
+import { useQuizNavigation } from '@/hooks/useQuizNavigation'
 import UiButton from './ui/UiButton'
 import UiLink from './ui/UiLink'
 import clsx from 'clsx'
@@ -13,33 +13,28 @@ export default function Exercise({
   question,
   index,
   isLast,
-  activeIndex,
-  setActiveIndex,
-  next,
-  prev,
+  totalQuestions,
 }: {
   question: QuestionWithHighlightedCode
   index: number
   isLast: boolean
-  activeIndex: number
-  setActiveIndex: (i: number) => void
-  next: () => void
-  prev: () => void
+  totalQuestions: number
 }) {
-  const answers = useAppState((state) => state.answers)
+  const { activeIndex, answeredCount, next, prev } = useQuizNavigation(totalQuestions)
 
   return (
-    <div className="flex min-h-screen items-center justify-center py-16 supports-[height:100svh]:min-h-[100svh]">
+    <div className="flex min-h-screen items-center justify-center py-16 supports-[height:100svh]:min-h-svh">
       <div
         className={clsx('relative w-full', {
-          'pointer-events-none select-none': answers.length < index,
+          'pointer-events-none select-none': answeredCount < index,
         })}
       >
-        {answers.length >= index && index !== activeIndex && (
+        {answeredCount >= index && index !== activeIndex && (
           <button
             className="absolute inset-0 z-10 outline-none focus-visible:ring-4 focus-visible:ring-current"
             onClick={index < activeIndex ? prev : next}
             disabled={index === activeIndex}
+            aria-label={index < activeIndex ? 'Go to previous question' : 'Go to next question'}
           ></button>
         )}
         <div className="mb-1">
@@ -55,7 +50,7 @@ export default function Exercise({
             >
               <ArrowLeftIcon className="mr-2 h-4 w-4" />
               <span>
-                prev<span className="hidden em32:inline">ious</span>
+                prev<span className="em32:inline hidden">ious</span>
               </span>
             </UiButton>
           </li>
@@ -68,7 +63,7 @@ export default function Exercise({
           <li className="flex basis-1/3">
             <UiButton
               className="em42:rounded-br-xl"
-              disabled={isLast || answers.length <= index || index !== activeIndex}
+              disabled={isLast || answeredCount <= index || index !== activeIndex}
               onClick={next}
             >
               <span>next</span>
