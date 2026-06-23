@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 
-export default function UiButton({
+export default function UiLink({
   children,
   className,
   href,
@@ -17,7 +17,7 @@ export default function UiButton({
   return (
     <Link
       className={clsx(
-        'dark:bg-eerieblack/98 flex w-full cursor-pointer select-none items-center justify-center bg-white/95 outline-none hover:bg-white/70 focus-visible:ring-4 focus-visible:ring-current dark:hover:bg-black/70',
+        'dark:bg-eerieblack/98 flex w-full cursor-pointer items-center justify-center bg-white/95 outline-none select-none hover:bg-white/70 focus-visible:ring-4 focus-visible:ring-current dark:hover:bg-black/70',
         className,
       )}
       href={href}

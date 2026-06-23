@@ -1,12 +1,14 @@
 import Header from '@/components/Header'
 import Exercises from '@/components/Exercises'
+import { AppStateProvider } from '@/lib/state'
 import shiki from '@/lib/shiki'
 import { questionsQuery } from '@/lib/questions'
 import { shuffleArray } from '@/lib/helpers'
 import { runQuery } from '@/lib/groqdClient'
+import { PRERENDERED_VARIANTS } from '@/lib/constants'
 
 export async function generateStaticParams() {
-  return new Array(16).fill(0).map((_, i) => ({ id: (i + 1).toString() }))
+  return new Array(PRERENDERED_VARIANTS).fill(0).map((_, i) => ({ id: (i + 1).toString() }))
 }
 
 export default async function Home({ params }: { params: Promise<{ id: string }> }) {
@@ -30,11 +32,11 @@ export default async function Home({ params }: { params: Promise<{ id: string }>
   const shuffled = shuffleArray(questionsWithHighlightedCode)
 
   return (
-    <>
+    <AppStateProvider>
       <Header questions={shuffled} />
       <main className="overflow-x-hidden">
         <Exercises questions={shuffled} />
       </main>
-    </>
+    </AppStateProvider>
   )
 }

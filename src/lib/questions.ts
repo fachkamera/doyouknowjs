@@ -16,6 +16,5 @@ const question = q.fragmentForType<'question'>().project((question) => ({
 
 export const questionsQuery = q.star.filterByType('question').project(question)
 
-// type ArrayElementType<T extends any[]> = T extends (infer U)[] ? U : never
 export type Question = InferFragmentType<typeof question>
 export type QuestionWithHighlightedCode = Question & { highlightedCode: string }

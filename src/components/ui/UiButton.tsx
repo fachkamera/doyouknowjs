@@ -14,7 +14,7 @@ export default function UiButton({
   return (
     <button
       className={clsx(
-        'dark:bg-eerieblack/95 flex h-12 w-full select-none items-center justify-center bg-white/95 outline-none focus-visible:ring-4 focus-visible:ring-current',
+        'dark:bg-eerieblack/95 flex h-12 w-full items-center justify-center bg-white/95 outline-none select-none focus-visible:ring-4 focus-visible:ring-current',
         {
           'text-stone-400 dark:text-stone-600': disabled,
           'cursor-pointer hover:bg-white/70 dark:hover:bg-black/70': !disabled,
