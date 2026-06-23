@@ -1,5 +1,6 @@
 import Header from '@/components/Header'
 import Exercises from '@/components/Exercises'
+import shiki from '@/lib/shiki'
 import { questionsQuery } from '@/lib/questions'
 import { shuffleArray } from '@/lib/helpers'
 import { runQuery } from '@/lib/groqdClient'
@@ -13,21 +14,9 @@ export default async function Home({ params }: { params: Promise<{ id: string }>
 
   const getHighlighted = async () =>
     Promise.all(
-      questions.map(async (question) => {
-        try {
-          const res = await fetch(
-            `https://slshiki.vercel.app/api/shiki?language=${question.code?.language || 'javascript'}&code=${encodeURIComponent(question.code.code || '')}`,
-            {
-              headers: {
-                authorization: `Bearer ${process.env.NEXT_SHIKI_TOKEN}`,
-              },
-            },
-          )
-          return await res.text()
-        } catch (e) {
-          console.error(e)
-        }
-      }),
+      questions.map((question) =>
+        shiki(question.code?.code || '', question.code?.language || 'javascript'),
+      ),
     )
 
   const highlighted = await getHighlighted()
