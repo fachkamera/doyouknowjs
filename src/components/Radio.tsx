@@ -4,10 +4,11 @@ import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import useSfx from '@/hooks/useSfx'
 import { useAppState } from '@/lib/state'
-import type { QuestionWithHighlightedCode } from '@/lib/questions'
+import type { Question } from '@/lib/questions'
+import { pointsMap } from '@/lib/constants'
 
 type Props = {
-  question: QuestionWithHighlightedCode
+  question: Question
   selectedOption?: string
   option: string
   setSelectedOption: (option: string) => void
@@ -32,12 +33,6 @@ export default function Radio({
   const { playSuccess, playFail } = useSfx()
 
   const { answerQuestion } = useAppState()
-
-  const pointsMap = {
-    rookie: 1,
-    advanced: 2,
-    pro: 3,
-  }
 
   const handleClick = () => {
     isCorrect ? playSuccess() : playFail()

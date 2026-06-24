@@ -1,12 +1,12 @@
 'use client'
 
 import Exercise from '@/components/Exercise'
-import type { QuestionWithHighlightedCode } from '@/lib/questions'
+import type { Question } from '@/lib/questions'
 import { useKeyDown } from '@/hooks/useKeyDown'
 import { useQuizNavigation } from '@/hooks/useQuizNavigation'
 import clsx from 'clsx'
 
-export default function Exercises({ questions }: { questions: QuestionWithHighlightedCode[] }) {
+export default function Exercises({ questions }: { questions: Question[] }) {
   const { activeIndex, next, prev } = useQuizNavigation(questions.length)
 
   useKeyDown('ArrowRight', next)
@@ -28,10 +28,7 @@ export default function Exercises({ questions }: { questions: QuestionWithHighli
               <div
                 className={clsx(
                   'w-full max-w-2xl font-mono transition-[scale,opacity] duration-1000',
-                  {
-                    'scale-[.7] opacity-50': index !== activeIndex,
-                    '': index === activeIndex,
-                  },
+                  { 'scale-[.7] opacity-50': index !== activeIndex },
                 )}
               >
                 <Exercise

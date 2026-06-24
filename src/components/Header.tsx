@@ -1,12 +1,11 @@
 'use client'
 
 import clsx from 'clsx'
-import { Bars2Icon } from '@heroicons/react/24/outline'
 import { useAppState } from '@/lib/state'
-import type { QuestionWithHighlightedCode } from '@/lib/questions'
+import type { Question } from '@/lib/questions'
 import Logo from './Logo'
 
-export default function Header({ questions }: { questions: QuestionWithHighlightedCode[] }) {
+export default function Header({ questions }: { questions: Question[] }) {
   const { answers } = useAppState()
   const answeredCount = Object.keys(answers).length
 

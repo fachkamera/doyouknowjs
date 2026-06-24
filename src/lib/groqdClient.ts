@@ -1,6 +1,6 @@
 import { createGroqBuilder, makeSafeQueryRunner } from 'groqd'
 import { sanityClient } from './sanityClient'
-import type * as SanityTypes from '../data/sanity.types.ts'
+import type * as SanityTypes from '../data/sanity.types'
 
 export const runQuery = makeSafeQueryRunner((query) =>
   sanityClient.fetch(

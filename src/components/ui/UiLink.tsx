@@ -17,11 +17,16 @@ export default function UiLink({
   return (
     <Link
       className={clsx(
-        'dark:bg-eerieblack/98 flex w-full cursor-pointer items-center justify-center bg-white/95 outline-none select-none hover:bg-white/70 focus-visible:ring-4 focus-visible:ring-current dark:hover:bg-black/70',
+        'dark:bg-eerieblack/98 flex w-full items-center justify-center bg-white/95 outline-none select-none focus-visible:ring-4 focus-visible:ring-current',
+        disabled
+          ? 'pointer-events-none cursor-not-allowed opacity-50'
+          : 'cursor-pointer hover:bg-white/70 dark:hover:bg-black/70',
         className,
       )}
       href={href}
       target={target}
+      aria-disabled={disabled}
+      onClick={(e) => disabled && e.preventDefault()}
       style={{
         WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
       }}

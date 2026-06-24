@@ -18,5 +18,5 @@ export function useQuizNavigation(totalQuestions: number) {
     setActiveIndex(activeIndex - 1)
   }
 
-  return { activeIndex, setActiveIndex, answeredCount, next, prev }
+  return { activeIndex, answeredCount, next, prev }
 }

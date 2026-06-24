@@ -11,7 +11,7 @@ export async function generateStaticParams() {
   return new Array(PRERENDERED_VARIANTS).fill(0).map((_, i) => ({ id: (i + 1).toString() }))
 }
 
-export default async function Home({ params }: { params: Promise<{ id: string }> }) {
+export default async function Home() {
   const questions = await runQuery(questionsQuery)
 
   const getHighlighted = async () =>

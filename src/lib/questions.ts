@@ -16,5 +16,4 @@ const question = q.fragmentForType<'question'>().project((question) => ({
 
 export const questionsQuery = q.star.filterByType('question').project(question)
 
-export type Question = InferFragmentType<typeof question>
-export type QuestionWithHighlightedCode = Question & { highlightedCode: string }
+export type Question = InferFragmentType<typeof question> & { highlightedCode: string }

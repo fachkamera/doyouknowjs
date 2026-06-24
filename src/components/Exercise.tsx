@@ -3,7 +3,7 @@
 import RadioGroup from './RadioGroup'
 import CodeBlock from '@/components/CodeBlock'
 import { ArrowTopRightOnSquareIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
-import type { QuestionWithHighlightedCode } from '@/lib/questions'
+import type { Question } from '@/lib/questions'
 import { useQuizNavigation } from '@/hooks/useQuizNavigation'
 import UiButton from './ui/UiButton'
 import UiLink from './ui/UiLink'
@@ -15,7 +15,7 @@ export default function Exercise({
   isLast,
   totalQuestions,
 }: {
-  question: QuestionWithHighlightedCode
+  question: Question
   index: number
   isLast: boolean
   totalQuestions: number
