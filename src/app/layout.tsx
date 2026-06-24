@@ -38,10 +38,27 @@ import bgP2560webp from '../assets/bg/bg-p-2560.webp'
 import bgP2880webp from '../assets/bg/bg-p-2880.webp'
 import bgP3323webp from '../assets/bg/bg-p-3323.webp'
 
+const title = 'Do You Know JS?'
+const description = 'A quiz that tests how well you know JavaScript’s quirks and gotchas'
+
 export const metadata: Metadata = {
-  title: 'Do You Know JS?',
-  description: 'Test and strenghten your Javascript skills with Do You Know JS?',
+  metadataBase: new URL('https://doyouknowjs.com'),
+  title,
+  description,
   robots: 'index, follow, noarchive',
+  openGraph: {
+    title,
+    description,
+    url: 'https://doyouknowjs.com',
+    siteName: title,
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: ['/og-image.jpg'],
+  },
 }
 
 export const viewport: Viewport = {
