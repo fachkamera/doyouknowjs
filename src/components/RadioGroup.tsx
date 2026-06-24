@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Radio from './Radio'
 import { shuffleArray } from '@/lib/helpers'
 import type { Question } from '@/lib/questions'
@@ -13,9 +13,14 @@ export default function RadioGroup({
   isActive: boolean
 }) {
   const [selectedOption, setSelectedOption] = useState<string>()
-  const [shuffledOptions] = useState<string[]>(() =>
-    shuffleArray([question.correctAnswer, ...question.otherAnswers]),
-  )
+  const [shuffledOptions, setShuffledOptions] = useState<string[]>([
+    question.correctAnswer,
+    ...question.otherAnswers,
+  ])
+
+  useEffect(() => {
+    setShuffledOptions(shuffleArray([question.correctAnswer, ...question.otherAnswers]))
+  }, [question])
 
   return (
     <div>

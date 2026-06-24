@@ -46,11 +46,24 @@ const sourceCodePro = Source_Code_Pro({
   display: 'block',
 })
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: title,
+  description,
+  url: 'https://doyouknowjs.com',
+  sameAs: ['https://github.com/fachkamera/doyouknowjs'],
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
         <Script id="dynamic-favicon" src="/dynamic-favicon.js" strategy="beforeInteractive" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
+        />
       </head>
       <body
         className={`${sourceCodePro.variable} bg-canvas-light dark:bg-canvas-dark overflow-hidden text-black dark:text-white`}
